@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/styles.css">
+<script type="text/javascript" src="javascript/script.js"></script>
+</head>
+<body>
+ <!--  <div th:if="${successMessage}" style="color: green;">
+        <p th:text="${successMessage}"></p> 
+    </div>-->
+    
+    <div th:if="${successMessage}" th:class="'alert ' + ${alertClass}" role="alert">
+    <span th:text="${successMessage}"></span>
+</div>
+ <div class="formbold-main-wrapper">
+    <div class="formbold-form-wrapper">
+   <!-- <p th:if="${errorMessage}" style="color: red;" th:text="${errorMessage}"></p -->
+      <form action="#" th:action="@{/save}" th:object="${student}" method="post" id="myForm"  >
+        
+        <div class="formbold-input-group">
+          <div class="ptitle"> Personal Details</div>
+          <label for="firsname">First Name</label><br>
+          <input type="text" id="firsname" class='formbold-form-input' th:field="*{firstName}" name="firstname" placeholder="first Name" required><br>
+          <label for="lastname">Last Name</label><br>
+           <input type="text" class='formbold-form-input' id="lastname" th:field="*{lastName}" name="lastname" placeholder="last Name" required><br>
+           <label for="dob"> Date of Birth</label><br>
+         <input id="dob" type="date" name="dob" th:field="*{dateOfBirth}" required="required"><br>
+         <label for="prejhs">  Previous JHS</label><br>
+     <input id="prejhs" type="text"th:field="*{previousJhs}" name="prejhs" required><br>
+     <label for="grade">  BECE Grade</label><br>
+      <select class="formbold-form-select" th:field="*{beceGrade}" name="grade" id="grade" required>
+       
+          <option th:value="06">06</option> <option th:value="07">07</option> <option th:value="08">08</option> <option th:value="09">09</option><option th:value="10">10</option>
+          <option th:value="11">11</option> <option th:value="12">12</option> <option th:value="13">13</option> <option th:value="14">14</option>
+          <option th:value="15">15</option> <option th:value="16">16</option> <option th:value="17">17</option> <option th:value="18">18</option>
+          <option th:value="19">19</option> <option th:value="20">20</option> <option th:value="21">21</option> <option th:value="22">22</option>
+          <option th:value="23">24</option> <option th:value="25">25</option> <option th:value="26">26</option> <option th:value="27">27</option>
+          <option th:value="28">28</option> <option th:value="29">29</option> <option th:value="30">30</option> <option th:value="31">31</option>
+           
+      </select>
+        </div>  
+        <label for="program">  Program Offered</label><br>
+       <select class="formbold-form-select" th:field="*{program}" name="program" id="program" required>     
+    <option th:each="program : ${programOptions}" th:value="${program}" th:text="${program}"></option>
+        </select><br>
+
+        <div class="resultsSegment"> BECE Results</div>
+        <label for="grade">ENGLISH</label><br>
+        <select class="formbold-form-select" th:field="*{english}" name="english" id="grade" required>
+            <option th:value="--">--</option>
+            <option th:value="1">1</option> <option th:value="2">2</option> <option th:value="3">3</option> <option th:value="4">4</option><option th:value="5">5</option>
+            <option th:value="6">6</option> <option th:value="7">7</option> <option th:value="8">8</option> <option th:value="9">9</option><option th:value="10">10</option>
+        </select><br>
+        <label for="grade">MATHS</label><br>
+        <select class="formbold-form-select" th:field="*{maths}" name="maths" id="grade" required>
+            <option th:value="--">--</option>
+           <option th:value="1">1</option> <option th:value="2">2</option> <option th:value="3">3</option> <option th:value="4">4</option><option th:value="5">5</option>
+            <option th:value="6">6</option> <option th:value="7">7</option> <option th:value="8">8</option> <option th:value="9">9</option><option th:value="10">10</option>
+        </select><br>
+        <label for="grade">SCIENCE</label><br>
+        <select class="formbold-form-select" th:field="*{science}" name="science" id="grade" required>
+            <option th:value="--">--</option>
+           <option th:value="1">1</option> <option th:value="2">2</option> <option th:value="3">3</option> <option th:value="4">4</option><option th:value="5">5</option>
+            <option th:value="6">6</option> <option th:value="7">7</option> <option th:value="8">8</option> <option th:value="9">9</option><option th:value="10">10</option>
+        </select><br>
+        <label for="grade">SOCIAL STUDIES</label><br>
+        <select class="formbold-form-select" th:field="*{socialStudies}" name="socialStudies" id="grade" required>
+            <option th:value="1">1</option> <option th:value="2">2</option> <option th:value="3">3</option> <option th:value="4">4</option><option th:value="5">5</option>
+            <option th:value="6">6</option> <option th:value="7">7</option> <option th:value="8">8</option> <option th:value="9">9</option><option th:value="10">10</option>
+        </select><br>
+        <label for="grade">RME</label><br>
+        <select class="formbold-form-select" th:field="*{rme}" name="rme" id="grade" required>
+            <option th:value="1">1</option> <option th:value="2">2</option> <option th:value="3">3</option> <option th:value="4">4</option><option th:value="5">5</option>
+            <option th:value="6">6</option> <option th:value="7">7</option> <option th:value="8">8</option> <option th:value="9">9</option><option th:value="10">10</option>
+        </select><br>
+        <label for="grade">ICT</label><br>
+        <select class="formbold-form-select" th:field="*{ict}" name="ict" id="grade" required>
+           <option th:value="1">1</option> <option th:value="2">2</option> <option th:value="3">3</option> <option th:value="4">4</option><option th:value="5">5</option>
+            <option th:value="6">6</option> <option th:value="7">7</option> <option th:value="8">8</option> <option th:value="9">9</option><option th:value="10">10</option>
+        </select><br>
+        <div class="parentDetail ">
+            <div class="gtitle"> Guardian Details</div>
+            <label for="mothername"> Mother's Name</label><br>
+           <input id="mothername"  th:field="*{motherName}" name="mothername" type="text" required="required"> <br> 
+           <label for="contact">Contact</label><br>
+           <input id="contact" th:field="*{motherContact}" name="motherContact" type="tel" required="required"> <br> 
+           <label for="fathername">Father's Name</label><br>
+            <input id="fathername" th:field="*{fatherName}" type="text" name="fathername" required> <br>
+            <label for="fathercontact">Contact</label><br>
+            <input type="tel" th:field="*{fatherContact}" name="fatherContact" id="fathercontact" required="required">
+      </div >  <br>
+  
+        <button  type='submit' class="formbold-btn" >Submit</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
